@@ -21,6 +21,10 @@ async function generateImage() {
             body: JSON.stringify({ prompt })
         });
         
+        if (!response.ok) {
+            throw new Error(`请求失败: ${response.status}`);
+        }
+        
         const data = await response.json();
         if (data.url) {
             const img = document.createElement('img');
@@ -32,6 +36,7 @@ async function generateImage() {
         }
     } catch (error) {
         result.innerHTML = '<div class="error">发生错误：' + error.message + '</div>';
+        console.error('Error:', error);
     } finally {
         // 恢复按钮状态
         generateBtn.disabled = false;
