@@ -1,0 +1,9 @@
+local HC = BeeGroupMinScript(
+     'BeeUnitHealth(unit,"%")<95', -- 条件：血量低于95%
+        "BeeUnitHealth(unit)",          -- 返回值：按血量排序
+     grouptype                          -- 搜索范围：团队/小队
+)
+if HC and BeeIsRun("回春术",HC) then
+     BeeRun("回春术",HC)
+     return-- 施法成功后返回
+end
